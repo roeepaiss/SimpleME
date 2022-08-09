@@ -57,18 +57,14 @@ namespace SimpleME.Resources
             state = new ProgressState();
             state.Progress += State_Progress;
             UpdateButton.IsEnabled = false;
-            try
+            LabelState.Content = "Updating...0%";
+            var newVersion = await updateManager.UpdateApp(progress =>
             {
-                LabelState.Content = "Updating...0%";
-                await updateManager.UpdateApp(progress =>
-                {
-                    state.Value = progress;
-                });
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+                state.Value = progress;
+            });
+            // You must restart to complete the update. 
+            // This can be done later / at any time.
+            if (newVersion != null) UpdateManager.RestartApp();
         }
 
         private void State_Progress(object sender, ProgressChangedEventArgs e)
