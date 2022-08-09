@@ -1,6 +1,8 @@
-﻿using Squirrel;
+﻿using SimpleME.Classes;
+using Squirrel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +22,7 @@ namespace SimpleME.Resources
     /// </summary>
     public partial class UpdateManagerWindow : Window
     {
-        volatile int progressPrecentage;
+        private ProgressState state;
         private UpdateManager updateManager;
         public UpdateManagerWindow()
         {
@@ -38,33 +40,29 @@ namespace SimpleME.Resources
         {
             try
             {
-                this.updateManager = new Squirrel.GithubUpdateManager(@"https://github.com/roeepaiss/SimpleME");
+                updateManager = new GithubUpdateManager(@"https://github.com/roeepaiss/SimpleME");
                 var updateInfo = await updateManager.CheckForUpdate();
                 if (updateInfo.ReleasesToApply.Count > 0)
-                {
                     UpdateButton.IsEnabled = true;
-                }
-                else
-                {
-                    UpdateButton.IsEnabled = false;
-                }
             }
             catch(Exception ex)
             {
+                LabelState.Content = "Try again later.";
                 throw ex;
-                MessageBox.Show("Try again later.");
-                this.Close();
             }
         }
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            state = new ProgressState();
+            state.Progress += State_Progress;
             UpdateButton.IsEnabled = false;
             try
             {
+                LabelState.Content = "Updating...0%";
                 await updateManager.UpdateApp(progress =>
                 {
-                    progressPrecentage = progress;
+                    state.Value = progress;
                 });
             }
             catch(Exception ex)
@@ -73,5 +71,10 @@ namespace SimpleME.Resources
             }
         }
 
+        private void State_Progress(object sender, ProgressChangedEventArgs e)
+        {
+            LabelState.Content = string.Format("Updating...{0}%", e.ProgressPercentage);
+            ProgBar.Value = e.ProgressPercentage;
+        }
     }
 }

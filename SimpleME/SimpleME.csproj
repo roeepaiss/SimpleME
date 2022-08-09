@@ -221,6 +221,7 @@
     <Compile Include="Classes\LogArgument.cs" />
     <Compile Include="Classes\MapArgument.cs" />
     <Compile Include="Classes\MediaInfoHelper.cs" />
+    <Compile Include="Classes\ProgressState.cs" />
     <Compile Include="Classes\WindowExtention.cs" />
     <Compile Include="Encode\EncoderSharedInfo.cs" />
     <Compile Include="ILogger.cs" />

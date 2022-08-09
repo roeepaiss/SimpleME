@@ -12,8 +12,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Margin="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"></Label>
+        <Label x:Name="LabelState" Grid.Row="0" Margin="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"></Label>
         <Button x:Name="UpdateButton" Click="UpdateButton_Click" MinWidth="100px" MinHeight="30px" Width="auto" Height="auto" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1">Update</Button>
-        <ProgressBar x:Name="Prog" Grid.Row="2" />
+        <ProgressBar x:Name="ProgBar" Grid.Row="2" />
     </Grid>
 </Window>
