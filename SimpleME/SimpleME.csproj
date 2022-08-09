@@ -367,7 +367,7 @@
     </GetAssemblyIdentity>
     <PropertyGroup>
       <Version>$([System.Version]::Parse(%(assemblyInfo.Version)).ToString(3))</Version>
-      <NuspecFile>$(SolutionDir)ScriptGeneratorAVS\SimpleME.nuspec</NuspecFile>
+      <NuspecFile>$(ProjectDir)SimpleME.nuspec</NuspecFile>
     </PropertyGroup>
     <XmlPeek XmlInputPath="$(NuspecFile)" Query="/package/metadata/id/text()">
       <Output TaskParameter="Result" ItemName="ID" />
