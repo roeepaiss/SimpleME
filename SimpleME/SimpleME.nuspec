@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>SimpleME</id>
+    <version>0.0.0</version>
+    <title>SimpleME</title>
+    <authors>roeepaiss</authors>
+    <description>SimpleME - Simple Media Encoder</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright 2022</copyright>
+  </metadata>
+  <files>
+	  <file src="bin\Release\**" target="lib\net48"/>
+  </files>
+</package>
