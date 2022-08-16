@@ -32,18 +32,21 @@ namespace SimpleME
         {
             //tools.CreateShortcutForThisExe(ShortcutLocation.StartMenu | ShortcutLocation.Desktop);
             tools.CreateShortcutForThisExe();
+            Environment.Exit(0);
         }
 
         private static void OnAppUninstall(SemanticVersion version, IAppTools tools)
         {
             //tools.RemoveShortcutForThisExe(ShortcutLocation.StartMenu | ShortcutLocation.Desktop);
             tools.RemoveShortcutForThisExe();
+            Environment.Exit(0);
         }
 
         private void OnAppUpdate(SemanticVersion version, IAppTools tools)
         {
-
+            Environment.Exit(0);
         }
+
         private static void OnAppRun(SemanticVersion version, IAppTools tools, bool firstRun)
         {
             tools.SetProcessAppUserModelId();
